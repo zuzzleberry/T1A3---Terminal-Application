@@ -31,6 +31,8 @@ end
 
 # Function to display monthly budget
 def display_budget(name, income, rent, bills, groceries, debts, transport, savings, entertainment, personal, other)
+    monthly_total = (rent + bills + groceries + debts + transport + savings + entertainment + personal + other)
+    monthly_remainder = income - monthly_total
     puts "Hi #{name}! Here is your monthly budget:".green
     puts "Monthly take home income: $#{income}".green
     # puts "Monthly rent: $#{rent}".green
@@ -41,10 +43,13 @@ def display_budget(name, income, rent, bills, groceries, debts, transport, savin
     # puts "Monthly entertainment spending: $#{entertainment}".green
     # puts "Monthly personal spending: $#{personal}".green
     # puts "Monthly other miscellanious spending: $#{other}".green
-    puts "Monthly total expenses: $#{rent + bills + groceries + debts + transport + savings + entertainment + personal + other}".green
-
-    
-    puts "Monthly remainder: $#{income - rent - bills - groceries - debts - transport - entertainment - personal - other}".green
+   if monthly_remainder < 0
+    puts "Monthly remainder: $#{monthly_remainder}".red
+    puts "You are working to a defecit! Please go back and adjust your budget".red
+   elsif monthly_remainder >= 0
+    puts "Monthly remainder: $#{monthly_remainder}".green
+   end
+    puts "Monthly total expenses: $#{monthly_total}".green
 end
 
 
